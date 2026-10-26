@@ -1,0 +1,4 @@
+{
+  "patterns": [],
+  "note": "Place image files exported from your approved Google Drive pattern library in this folder and list them here. Example: {\"patterns\":[{\"src\":\"stripes.png\",\"color\":[220,80,90]},{\"src\":\"dots.png\",\"color\":[50,120,210]}]}. The color field is the representative RGB colour used for mapping."
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Form / Frame — Video Reconstruction Studio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar"><div class="brand"><span class="brand-mark">◈</span><span>FORM / FRAME</span></div><div class="top-note">VIDEO RECONSTRUCTION STUDIO <span class="live-dot"></span></div></header>
+<main>
+<section class="intro"><p class="eyebrow">01 — INPUT / OUTPUT</p><h1>Rebuild the moving image.</h1><p class="subhead">Turn video into a living field of geometric marks, colour, and repeat patterns.</p></section>
+<section class="workspace">
+<aside class="panel controls">
+<div class="section-title"><span>01</span><h2>Source video</h2></div>
+<label class="upload-zone" for="videoInput"><span class="upload-icon">↥</span><strong>Choose a video</strong><small>MP4, WebM, MOV where browser-supported</small><input type="file" id="videoInput" accept="video/*"></label>
+<div class="control-row"><label for="playToggle">Playback</label><button id="playToggle" class="small-btn" disabled>▶ Play</button></div>
+<div class="control-row"><label for="timeScrub">Scrub frame</label><span id="timeLabel" class="value">00:00</span></div><input id="timeScrub" type="range" min="0" max="100" value="0" disabled>
+<div class="section-title spaced"><span>02</span><h2>Reconstruction</h2></div>
+<div class="segmented" role="group" aria-label="Reconstruction mode"><button data-mode="shapes" class="active">Shape marks</button><button data-mode="patterns">Patterns</button></div>
+<label class="field-label" for="shapeType">Mark shape</label><div class="shape-options"><button data-shape="circle" class="shape active" aria-label="Circles">● <small>Circle</small></button><button data-shape="square" class="shape" aria-label="Squares">■ <small>Square</small></button><button data-shape="triangle" class="shape" aria-label="Triangles">▲ <small>Triangle</small></button></div>
+<div class="range-head"><label for="pixelSize">Pixelation</label><output id="pixelSizeOut">12 px</output></div><input id="pixelSize" type="range" min="6" max="36" value="12" step="2"><p class="hint">Larger sampling cells create a more abstract image.</p>
+<div class="range-head"><label for="colorShift">Colour shift</label><output id="colorShiftOut">0°</output></div><input id="colorShift" type="range" min="0" max="360" value="0">
+<div class="range-head"><label for="saturation">Saturation</label><output id="saturationOut">100%</output></div><input id="saturation" type="range" min="0" max="200" value="100">
+<div class="range-head"><label for="markScale">Mark size</label><output id="markScaleOut">100%</output></div><input id="markScale" type="range" min="55" max="120" value="100">
+<div class="range-head"><label for="randomness">Size variation</label><output id="randomnessOut">0%</output></div><input id="randomness" type="range" min="0" max="100" value="0"><p class="hint">Variation is applied consistently to each frame.</p>
+<div id="patternControls" class="pattern-panel hidden"><div class="section-title compact"><span>03</span><h2>Pattern mapping</h2></div><p class="hint">Patterns are loaded only from the bundled library manifest. Each distinct sampled colour is assigned a distinct pattern.</p><div id="patternStatus" class="status">No pattern assets found in the local library yet.</div><label class="toggle-row"><input type="checkbox" id="protectFace" checked><span>Preserve human faces</span></label><p class="hint">Face preservation uses a lightweight browser heuristic and is approximate; it is not guaranteed to detect every face.</p></div>
+<div class="button-row"><button id="resetBtn" class="secondary" disabled>Reset controls</button><button id="downloadBtn" class="primary" disabled>Export frame ↗</button></div>
+</aside>
+<section class="preview-column">
+<div class="preview-top"><div><p class="eyebrow">LIVE CANVAS</p><h2 id="previewTitle">Your reconstruction</h2></div><span id="renderState" class="state">WAITING FOR VIDEO</span></div>
+<div class="canvas-wrap"><canvas id="outputCanvas" width="960" height="540"></canvas><div id="emptyState" class="empty-state"><div class="empty-symbol">◌</div><strong>Your video, reimagined.</strong><p>Upload a video to begin reconstructing its frames.</p></div></div>
+<div class="preview-footer"><span id="dimensions">960 × 540 canvas</span><span>PROCESSING HAPPENS IN YOUR BROWSER</span></div>
+<video id="sourceVideo" playsinline muted crossorigin="anonymous"></video>
+<div class="info-card"><span class="info-icon">✳</span><div><strong>How the mark sizing works</strong><p>Adjacent cells with similar colours are grouped into 1, 4, 9, 16 or more-cell blocks. A 1-cell group uses a 30 px mark; 4 cells use 60 px; 9 cells use 90 px, up to 150 px. Groups are capped at 25 cells and the shape scales to fit the grouped area.</p></div></div>
+</section>
+</section>
+</main><footer>FORM / FRAME <span>EXPERIMENTAL IMAGE SYSTEMS · 2026</span></footer>
+<script src="script.js"></script>
+</body></html>
